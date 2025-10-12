@@ -3,49 +3,943 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Neuverrax – Building AI-powered solutions for real-world impact"/>
-  <link rel="stylesheet" href="style.css"/>
-  <title>Neuverrax</title>
+  <meta name="description" content="NeuverraX – Pioneering autonomous intelligence systems that perceive, decide, and act. Building AI-powered solutions for real-world impact across industries."/>
+  <meta name="keywords" content="AI, Machine Learning, Autonomous Systems, Quantum Computing, AI Solutions, Research Tools"/>
+  <title>NeuverraX - Autonomous Intelligence for Tomorrow</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #8b5cf6;
+      --accent: #06b6d4;
+      --dark: #0f172a;
+      --dark-secondary: #1e293b;
+      --text-light: #e2e8f0;
+      --text-muted: #94a3b8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--dark);
+      color: var(--text-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    header.scrolled {
+      background: rgba(15, 23, 42, 0.98);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+
+    nav {
+      display: flex;
+      gap: 35px;
+    }
+
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover:after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .hero-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+    }
+
+    .hero-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #fff, var(--text-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero .tagline {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    .mission-inline {
+      font-size: 1.15rem;
+      color: var(--text-light);
+      margin-bottom: 40px;
+      padding: 30px;
+      background: rgba(99, 102, 241, 0.08);
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 32px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(99, 102, 241, 0.6);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-light);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* Stats Section */
+    .stats {
+      padding: 80px 20px;
+      background: var(--dark-secondary);
+      border-top: 1px solid rgba(99, 102, 241, 0.2);
+      border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      text-align: center;
+    }
+
+    .stat-item h3 {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+
+    .stat-item p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    /* Section Utilities */
+    .section-title {
+      font-size: 3rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 60px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Pillars Section */
+    .pillars {
+      padding: 120px 20px;
+      background: var(--dark);
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .pillar-card {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar-card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .pillar-card:hover:before {
+      transform: scaleX(1);
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+    }
+
+    .pillar-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .pillar-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--text-light);
+    }
+
+    .pillar-card .focus {
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .pillar-card p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .pillar-card .application {
+      color: var(--text-light);
+      font-size: 0.85rem;
+      padding: 8px 12px;
+      background: rgba(99, 102, 241, 0.2);
+      border-radius: 6px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    /* Products Section */
+    .products {
+      padding: 120px 20px;
+      background: var(--dark-secondary);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .product-card {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(6, 182, 212, 0.08));
+      padding: 50px;
+      border-radius: 20px;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.1));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .product-card:hover:before {
+      opacity: 1;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(99, 102, 241, 0.4);
+      border-color: var(--accent);
+    }
+
+    .product-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .product-card h3 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: var(--text-light);
+      position: relative;
+    }
+
+    .product-card .subtitle {
+      color: var(--accent);
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .product-card p {
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 25px;
+      font-size: 1.05rem;
+    }
+
+    .features-list {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+
+    .features-list li {
+      padding: 10px 0;
+      color: var(--text-light);
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .features-list li:before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* About Section */
+    .about {
+      padding: 120px 20px;
+      background: var(--dark);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-top: 60px;
+      align-items: start;
+    }
+
+    .about-text {
+      max-width: 600px;
+    }
+
+    .about-text p {
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 25px;
+    }
+
+    .mission-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission-box:before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 5rem;
+      color: var(--primary);
+      opacity: 0.2;
+    }
+
+    .mission-label {
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .mission-text {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      font-weight: 500;
+      position: relative;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .value-item {
+      padding: 25px;
+      background: rgba(99, 102, 241, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .value-item:hover {
+      background: rgba(99, 102, 241, 0.1);
+      transform: translateX(5px);
+    }
+
+    .value-item h4 {
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .value-item p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 120px 20px;
+      background: linear-gradient(180deg, var(--dark-secondary) 0%, var(--dark) 100%);
+    }
+
+    .contact-content {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-content p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 1.2rem;
+      color: var(--text-light);
+    }
+
+    .contact-item a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .contact-item a:hover {
+      color: var(--primary);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .mission-box {
+        order: -1;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero .tagline {
+        font-size: 1.2rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      nav {
+        gap: 15px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+
+      .products-grid,
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header-content {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat-item h3 {
+        font-size: 2rem;
+      }
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Animations on scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
-  <header>
+  <header id="header">
     <div class="container">
-      <h1 class="logo">Neuverrax</h1>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#products">Products</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <div class="header-content">
+        <h1 class="logo">NeuverraX</h1>
+        <nav>
+          <a href="#home">Home</a>
+          <a href="#pillars">What We Do</a>
+          <a href="#products">Products</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
     </div>
   </header>
 
-  <main class="hero-section">
+  <section id="home" class="hero">
+    <div class="hero-background"></div>
+    <div class="hero-grid"></div>
     <div class="container">
-      <h2>Innovating at the Edge of AI, Health, and Education</h2>
+      <div class="hero-content">
+        <div class="tagline">Engineering Autonomous Intelligence</div>
+        <h1>Building Systems That Perceive, Decide, and Act</h1>
+        <p>We design intelligent autonomous systems that evolve, learn, and collaborate with humans—transforming industries through cutting-edge AI, quantum-inspired computing, and adaptive intelligence.</p>
+        <div class="mission-inline">
+          Our mission: To design and deliver intelligent autonomous systems that perceive, decide, and act across industries — empowering a world where technology evolves, learns, and collaborates autonomously with humans.
+        </div>
+        <div class="cta-buttons">
+          <a href="#products" class="btn btn-primary">Explore Our Products</a>
+          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+        </div>
+      </div>
     </div>
-  </main>
+  </section>
 
-  <section id="about" class="about">
+  <section class="stats">
     <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item fade-in">
+          <h3>4</h3>
+          <p>Core Innovation Pillars</p>
+        </div>
+        <div class="stat-item fade-in">
+          <h3>AI</h3>
+          <p>Autonomous Intelligence</p>
+        </div>
+        <div class="stat-item fade-in">
+          <h3>∞</h3>
+          <p>Possibilities Unlocked</p>
+        </div>
+        <div class="stat-item fade-in">
+          <h3>2025</h3>
+          <p>Building the Future</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pillars" class="pillars">
+    <div class="container">
+      <h2 class="section-title">What We Do</h2>
+      <p class="section-subtitle">Four foundational pillars driving our innovation and impact</p>
+      <div class="pillars-grid">
+        <div class="pillar-card fade-in">
+          <div class="pillar-icon">🧠</div>
+          <h3>Autonomous Intelligence</h3>
+          <span class="focus">AI/ML • Reinforcement Learning</span>
+          <p>Building agentic AI systems with self-learning optimization and advanced reinforcement learning capabilities that enable autonomous decision-making and continuous improvement.</p>
+          <div class="application">Research & Consulting Wing</div>
+        </div>
+
+        <div class="pillar-card fade-in">
+          <div class="pillar-icon">⚛️</div>
+          <h3>Quantum-Inspired Computing</h3>
+          <span class="focus">Quantum ML • Hybrid Algorithms</span>
+          <p>Pioneering quantum machine learning and hybrid quantum-classical algorithms to solve complex optimization problems at unprecedented speed and scale.</p>
+          <div class="application">Internal R&D + Product Acceleration</div>
+        </div>
+
+        <div class="pillar-card fade-in">
+          <div class="pillar-icon">🤝</div>
+          <h3>Human-Autonomy Interaction</h3>
+          <span class="focus">Adaptive Learning • Digital Assistants</span>
+          <p>Creating intelligent interfaces that bridge human intuition with machine precision through adaptive learning tools and context-aware digital assistants.</p>
+          <div class="application">Abacus Sensei & Learning Platforms</div>
+        </div>
+
+        <div class="pillar-card fade-in">
+          <div class="pillar-icon">🏢</div>
+          <h3>Organizational Autonomy</h3>
+          <span class="focus">Decision Systems • Process Optimization</span>
+          <p>Developing autonomous decision systems and intelligent process optimization tools that transform how organizations operate and innovate.</p>
+          <div class="application">OpsPulse & Innovation Platforms</div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="products" class="products">
     <div class="container">
+      <h2 class="section-title">Our Products</h2>
+      <p class="section-subtitle">Intelligent solutions transforming education and research</p>
+      <div class="products-grid">
+        <div class="product-card fade-in">
+          <span class="product-badge">Education AI</span>
+          <h3>Abacus Sensei</h3>
+          <div class="subtitle">Intelligent Learning Companion for Students & Educators</div>
+          <p>An adaptive AI-powered learning platform that transforms traditional education through personalized instruction, real-time assessment, and intelligent tutoring systems.</p>
+          <ul class="features-list">
+            <li>Personalized learning paths adapted to individual student needs</li>
+            <li>Real-time performance analytics and insights</li>
+            <li>Interactive problem-solving with step-by-step guidance</li>
+            <li>Teacher tools for curriculum optimization</li>
+            <li>Multi-subject support with adaptive difficulty scaling</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Learn More</a>
+        </div>
+
+        <div class="product-card fade-in">
+          <span class="product-badge">Research AI</span>
+          <h3>Research Copilot</h3>
+          <div class="subtitle">AI-Powered Research Acceleration Platform</div>
+          <p>A comprehensive AI assistant for researchers that streamlines literature review, enables intelligent brainstorming, and provides global research insights across disciplines.</p>
+          <ul class="features-list">
+            <li>Intelligent literature survey with semantic search</li>
+            <li>AI-powered brainstorming and hypothesis generation</li>
+            <li>Global research trends and citation analysis</li>
+            <li>Automated reference management and formatting</li>
+            <li>Cross-disciplinary connection discovery</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
+      <h2 class="section-title">About NeuverraX</h2>
+      <p class="section-subtitle">Pioneering the future of autonomous intelligence</p>
+      
+      <div class="about-grid">
+        <div class="about-text">
+          <p>NeuverraX stands at the forefront of autonomous intelligence, pioneering solutions that bridge the gap between human potential and machine capability. We believe the future belongs to systems that don't just compute—they perceive, decide, learn, and evolve.</p>
+          
+          <p>Our multidisciplinary team combines expertise in artificial intelligence, quantum computing, cognitive science, and systems engineering to create products that solve real-world challenges across education, research, and enterprise operations.</p>
+
+          <p>We're building a future where intelligent systems work alongside humans, amplifying capabilities and unlocking new possibilities across every industry.</p>
+
+          <div class="values-grid">
+            <div class="value-item">
+              <h4>Innovation</h4>
+              <p>Pushing boundaries with cutting-edge research and bold ideas</p>
+            </div>
+            <div class="value-item">
+              <h4>Autonomy</h4>
+              <p>Building systems that empower human decision-making</p>
+            </div>
+            <div class="value-item">
+              <h4>Impact</h4>
+              <p>Creating solutions that transform industries and lives</p>
+            </div>
+            <div class="value-item">
+              <h4>Excellence</h4>
+              <p>Delivering world-class quality in everything we build</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-visual fade-in">
+          <div class="tech-stack">
+            <h3>Our Technology Stack</h3>
+            <div class="tech-items">
+              <div class="tech-tag">Machine Learning</div>
+              <div class="tech-tag">Deep Learning</div>
+              <div class="tech-tag">Reinforcement Learning</div>
+              <div class="tech-tag">Quantum Computing</div>
+              <div class="tech-tag">Natural Language Processing</div>
+              <div class="tech-tag">Computer Vision</div>
+              <div class="tech-tag">Edge AI</div>
+              <div class="tech-tag">Adaptive Systems</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="contact" class="contact">
     <div class="container">
-      <h3>Contact Us</h3>
-      <p>Email: <a href="mailto:info@neuverrax.com">info@neuverrax.com</a></p>
+      <h2 class="section-title">Get in Touch</h2>
+      <div class="contact-content">
+        <p>Ready to explore how autonomous intelligence can transform your organization? Let's start a conversation.</p>
+        <div class="contact-info">
+          <div class="contact-item">
+            <span>📧</span>
+            <a href="mailto:info@neuverrax.com">info@neuverrax.com</a>
+          </div>
+          <div class="contact-item">
+            <span>🌐</span>
+            <span>NeuverraX.com</span>
+          </div>
+        </div>
+        <div style="margin-top: 50px;">
+          <a href="mailto:info@neuverrax.com" class="btn btn-primary">Contact Us</a>
+        </div>
+      </div>
     </div>
   </section>
 
   <footer>
     <div class="container">
-      <p>&copy; 2025 Neuverrax. All rights reserved.</p>
+      <p>&copy; 2025 NeuverraX. All rights reserved. | Building Autonomous Intelligence for Tomorrow</p>
     </div>
   </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Fade in animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
