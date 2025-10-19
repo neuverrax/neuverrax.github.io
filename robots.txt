@@ -1,0 +1,14 @@
+# NeuverraX robots.txt
+
+User-agent: *
+Allow: /
+
+# Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://neuverrax.com/sitemap.xml
+
+# Disallow common non-content paths
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/

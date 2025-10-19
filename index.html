@@ -1,1462 +1,442 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="NeuverraX – Pioneering autonomous intelligence systems that perceive, decide, and act. Building AI-powered solutions for real-world impact across industries."/>
-  <meta name="keywords" content="AI, Machine Learning, Autonomous Systems, Quantum Computing, AI Solutions, Research Tools"/>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230f172a' width='100' height='100'/><text y='75' font-size='70' fill='%236366f1' font-family='system-ui, sans-serif' font-weight='700'>N</text></svg>">
-  <title>NeuverraX - Engineering Autonomous Intelligence</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
 
-    :root {
-      --primary: #6366f1;
-      --primary-dark: #4f46e5;
-      --secondary: #8b5cf6;
-      --accent: #06b6d4;
-      --dark: #0f172a;
-      --dark-secondary: #1e293b;
-      --text-light: #e2e8f0;
-      --text-muted: #94a3b8;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background-color: var(--dark);
-      color: var(--text-light);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Header */
-    header {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    header.scrolled {
-      background: rgba(15, 23, 42, 0.98);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 0;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .logo-icon {
-      width: 45px;
-      height: 45px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 1.5rem;
-      color: white;
-      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-    }
-
-    .logo {
-      font-size: 2rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.5px;
-    }
-
-    nav {
-      display: flex;
-      gap: 35px;
-    }
-
-    nav a {
-      color: var(--text-light);
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    nav a:after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--primary);
-      transition: width 0.3s ease;
-    }
-
-    nav a:hover:after {
-      width: 100%;
-    }
-
-    nav a:hover {
-      color: var(--accent);
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      padding-top: 80px;
-    }
-
-    .hero-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
-    }
-
-    .hero-grid {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
-      background-size: 50px 50px;
-      animation: gridMove 20s linear infinite;
-    }
-
-    @keyframes gridMove {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(50px, 50px); }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      animation: fadeInUp 1s ease-out;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hero h1 {
-      font-size: 4rem;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 24px;
-      background: linear-gradient(135deg, #fff, var(--text-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero .tagline {
-      font-size: 1.5rem;
-      color: var(--accent);
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-
-    .hero p {
-      font-size: 1.25rem;
-      color: var(--text-muted);
-      margin-bottom: 40px;
-      line-height: 1.8;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 14px 32px;
-      font-size: 1rem;
-      font-weight: 600;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      display: inline-block;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(99, 102, 241, 0.6);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text-light);
-      border: 2px solid var(--primary);
-    }
-
-    .btn-secondary:hover {
-      background: var(--primary);
-      transform: translateY(-2px);
-    }
-
-    /* Stats Section */
-    .stats {
-      padding: 80px 20px;
-      background: var(--dark-secondary);
-      border-top: 1px solid rgba(99, 102, 241, 0.2);
-      border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 40px;
-      text-align: center;
-    }
-
-    .stat-item h3 {
-      font-size: 3rem;
-      color: var(--accent);
-      margin-bottom: 10px;
-      font-weight: 800;
-    }
-
-    .stat-item p {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-    }
-
-    /* Section Utilities */
-    .section-title {
-      font-size: 3rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .section-subtitle {
-      text-align: center;
-      font-size: 1.25rem;
-      color: var(--text-muted);
-      margin-bottom: 60px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Pillars Section */
-    .pillars {
-      padding: 120px 20px;
-      background: var(--dark);
-    }
-
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 60px;
-    }
-
-    .pillar-card {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-      padding: 40px;
-      border-radius: 16px;
-      border: 1px solid rgba(99, 102, 241, 0.2);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .pillar-card:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-    }
-
-    .pillar-card:hover:before {
-      transform: scaleX(1);
-    }
-
-    .pillar-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
-    }
-
-    .pillar-icon {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-
-    .pillar-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-      color: var(--text-light);
-    }
-
-    .pillar-card .focus {
-      color: var(--accent);
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .pillar-card p {
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 15px;
-    }
-
-    .pillar-card .application {
-      color: var(--text-light);
-      font-size: 0.85rem;
-      padding: 8px 12px;
-      background: rgba(99, 102, 241, 0.2);
-      border-radius: 6px;
-      display: inline-block;
-      margin-top: 10px;
-    }
-
-    /* Products Section */
-    .products {
-      padding: 120px 20px;
-      background: var(--dark-secondary);
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 40px;
-      margin-top: 60px;
-    }
-
-    .product-card {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(6, 182, 212, 0.08));
-      padding: 50px;
-      border-radius: 20px;
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .product-card:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.1));
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .product-card:hover:before {
-      opacity: 1;
-    }
-
-    .product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 25px 50px rgba(99, 102, 241, 0.4);
-      border-color: var(--accent);
-    }
-
-    .product-badge {
-      display: inline-block;
-      padding: 6px 16px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-radius: 20px;
-      margin-bottom: 20px;
-    }
-
-    .product-card h3 {
-      font-size: 2rem;
-      margin-bottom: 15px;
-      color: var(--text-light);
-      position: relative;
-    }
-
-    .product-card .subtitle {
-      color: var(--accent);
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-
-    .product-card p {
-      color: var(--text-muted);
-      line-height: 1.8;
-      margin-bottom: 25px;
-      font-size: 1.05rem;
-    }
-
-    .features-list {
-      list-style: none;
-      margin-bottom: 30px;
-    }
-
-    .features-list li {
-      padding: 10px 0;
-      color: var(--text-light);
-      position: relative;
-      padding-left: 30px;
-    }
-
-    .features-list li:before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-weight: bold;
-    }
-
-    /* Services Section */
-    .services {
-      padding: 120px 20px;
-      background: var(--dark);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 60px;
-    }
-
-    .service-card {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
-      padding: 40px;
-      border-radius: 16px;
-      border: 1px solid rgba(99, 102, 241, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3);
-      border-color: var(--accent);
-    }
-
-    .service-icon {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-    }
-
-    .service-card h3 {
-      font-size: 1.5rem;
-      color: var(--text-light);
-      margin-bottom: 15px;
-    }
-
-    .service-card p {
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    .service-pillars {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 15px;
-    }
-
-    .service-tag {
-      font-size: 0.8rem;
-      padding: 5px 12px;
-      background: rgba(99, 102, 241, 0.2);
-      color: var(--accent);
-      border-radius: 12px;
-      font-weight: 600;
-    }
-
-    /* About Section */
-    .about {
-      padding: 120px 20px;
-      background: var(--dark-secondary);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      margin-top: 60px;
-      align-items: start;
-    }
-
-    .about-text {
-      max-width: 600px;
-    }
-
-    .about-text p {
-      font-size: 1.15rem;
-      line-height: 1.9;
-      color: var(--text-muted);
-      margin-bottom: 25px;
-    }
-
-    .about-visual {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-      padding: 40px;
-      border-radius: 16px;
-      border: 1px solid rgba(99, 102, 241, 0.3);
-    }
-
-    .tech-stack h3 {
-      color: var(--text-light);
-      font-size: 1.5rem;
-      margin-bottom: 25px;
-    }
-
-    .tech-items {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .tech-item {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 15px;
-      background: rgba(99, 102, 241, 0.15);
-      border-radius: 12px;
-      border: 1px solid rgba(99, 102, 241, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .tech-item:hover {
-      background: rgba(99, 102, 241, 0.25);
-      transform: translateX(5px);
-    }
-
-    .tech-icon {
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      flex-shrink: 0;
-    }
-
-    .tech-info h4 {
-      color: var(--text-light);
-      font-size: 1.1rem;
-      margin-bottom: 3px;
-    }
-
-    .tech-info p {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      margin: 0;
-    }
-
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 25px;
-      margin-top: 40px;
-    }
-
-    .value-item {
-      padding: 25px;
-      background: rgba(99, 102, 241, 0.05);
-      border-radius: 12px;
-      border: 1px solid rgba(99, 102, 241, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .value-item:hover {
-      background: rgba(99, 102, 241, 0.1);
-      transform: translateX(5px);
-    }
-
-    .value-item h4 {
-      color: var(--accent);
-      font-size: 1.2rem;
-      margin-bottom: 8px;
-    }
-
-    .value-item p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    /* Contact Section */
-    .contact {
-      padding: 120px 20px;
-      background: var(--dark);
-    }
-
-    .contact-content {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .contact-content > p {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      margin-bottom: 50px;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-bottom: 50px;
-    }
-
-    .contact-card {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-      padding: 35px;
-      border-radius: 16px;
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-
-    .contact-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3);
-    }
-
-    .contact-icon {
-      width: 70px;
-      height: 70px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      font-size: 1.8rem;
-    }
-
-    .contact-icon svg {
-      width: 35px;
-      height: 35px;
-      stroke: white;
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .contact-card h4 {
-      color: var(--text-light);
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-    }
-
-    .contact-card a {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-    }
-
-    .contact-card a:hover {
-      color: var(--primary);
-    }
-
-    .contact-card p {
-      color: var(--text-muted);
-      font-size: 1rem;
-    }
-
-    /* Product Detail Page */
-    .product-detail {
-      display: none;
-      padding: 120px 20px 80px;
-      background: var(--dark);
-      min-height: 100vh;
-    }
-
-    .product-detail.active {
-      display: block;
-    }
-
-    .back-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-      margin-bottom: 40px;
-      transition: all 0.3s ease;
-    }
-
-    .back-button:hover {
-      color: var(--primary);
-      transform: translateX(-5px);
-    }
-
-    .product-hero {
-      max-width: 900px;
-      margin: 0 auto 60px;
-      text-align: center;
-    }
-
-    .product-hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .product-hero .subtitle {
-      font-size: 1.5rem;
-      color: var(--accent);
-      margin-bottom: 25px;
-    }
-
-    .product-hero p {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      line-height: 1.8;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin: 60px 0;
-    }
-
-    .feature-box {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-      padding: 35px;
-      border-radius: 16px;
-      border: 1px solid rgba(99, 102, 241, 0.2);
-    }
-
-    .feature-box h3 {
-      color: var(--text-light);
-      font-size: 1.4rem;
-      margin-bottom: 15px;
-    }
-
-    .feature-box p {
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    .cta-section {
-      text-align: center;
-      padding: 60px 40px;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.15));
-      border-radius: 20px;
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      margin-top: 60px;
-    }
-
-    .cta-section h2 {
-      font-size: 2.5rem;
-      color: var(--text-light);
-      margin-bottom: 20px;
-    }
-
-    .cta-section p {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      margin-bottom: 30px;
-    }
-
-    /* Footer */
-    footer {
-      background: var(--dark-secondary);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    footer p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 968px) {
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .about-visual {
-        order: -1;
-      }
-
-      .values-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-
-      .hero .tagline {
-        font-size: 1.2rem;
-      }
-
-      .hero p {
-        font-size: 1.1rem;
-      }
-
-      .section-title {
-        font-size: 2rem;
-      }
-
-      .product-hero h1 {
-        font-size: 2.5rem;
-      }
-
-      nav {
-        gap: 15px;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-      }
-
-      .products-grid,
-      .pillars-grid,
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .header-content {
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      nav {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .stat-item h3 {
-        font-size: 2rem;
-      }
-
-      .logo {
-        font-size: 1.6rem;
-      }
-
-      .logo-icon {
-        width: 38px;
-        height: 38px;
-        font-size: 1.3rem;
-      }
-    }
-
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Animations on scroll */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease-out;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Hide/Show Pages */
-    .page {
-      display: none;
-    }
-
-    .page.active {
-      display: block;
-    }
-  </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N094D25M3E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N094D25M3E');
+</script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="NeuverraX builds AI-powered adaptive learning for abacus education and intelligent research assistants. Transform how students learn and researchers discover knowledge."/>
+<meta name="keywords" content="AI education software, abacus teaching app, abacus learning platform, AI research assistant, adaptive learning, autonomous intelligence, machine learning education, personalized learning"/>
+<meta name="author" content="NeuverraX">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://neuverrax.com/">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://neuverrax.com/">
+<meta property="og:site_name" content="NeuverraX">
+<meta property="og:title" content="NeuverraX - Engineering Autonomous Intelligence">
+<meta property="og:description" content="AI-powered adaptive learning for abacus education and intelligent research assistants. Transforming education and research with autonomous intelligence.">
+<meta property="og:image" content="https://neuverrax.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://neuverrax.com/">
+<meta name="twitter:title" content="NeuverraX - Engineering Autonomous Intelligence">
+<meta name="twitter:description" content="AI-powered adaptive learning for abacus education and intelligent research assistants. Transforming education and research with autonomous intelligence.">
+<meta name="twitter:image" content="https://neuverrax.com/og-image.jpg">
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230f172a' width='100' height='100'/><text y='75' font-size='70' fill='%236366f1' font-family='system-ui, sans-serif' font-weight='700'>N</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230f172a' width='100' height='100'/><text y='75' font-size='70' fill='%236366f1' font-family='system-ui, sans-serif' font-weight='700'>N</text></svg>">
+
+<!-- Preconnect to improve performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://www.google-analytics.com">
+<link rel="preconnect" href="https://formspree.io">
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="style.css">
+
+<!-- Structured Data (JSON-LD) for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "NeuverraX",
+  "url": "https://neuverrax.com",
+  "logo": "https://neuverrax.com/logo.png",
+  "description": "NeuverraX builds AI-powered autonomous intelligence systems for education and research.",
+  "foundingDate": "2025",
+  "sameAs": [
+    "https://linkedin.com/company/neuverrax",
+    "https://twitter.com/neuverrax"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "info@neuverrax.com",
+    "contactType": "Customer Service"
+  }
+}
+</script>
+
+<title>NeuverraX - AI-Powered Adaptive Learning & Research Intelligence | Abacus Education</title>
 </head>
 <body>
-  <header id="header">
-    <div class="container">
-      <div class="header-content">
-        <div class="logo-container">
-          <div class="logo-icon">N</div>
-          <h1 class="logo">NeuverraX</h1>
-        </div>
-        <nav>
-          <a href="#home" onclick="showPage('home')">Home</a>
-          <a href="#pillars" onclick="showPage('home', 'pillars')">What We Do</a>
-          <a href="#products" onclick="showPage('home', 'products')">Products</a>
-          <a href="#services" onclick="showPage('home', 'services')">Services</a>
-          <a href="#about" onclick="showPage('home', 'about')">About</a>
-          <a href="#contact" onclick="showPage('home', 'contact')">Contact</a>
-        </nav>
-      </div>
-    </div>
-  </header>
+<header id="header">
+<div class="container">
+<div class="header-content">
+<div class="logo-container">
+<div class="logo-icon">N</div>
+<h1 class="logo">NeuverraX</h1>
+</div>
+<nav>
+<a href="#home">Home</a>
+<a href="#products">Products</a>
+<a href="#services">Services</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
+</div>
+</div>
+</header>
 
-  <!-- Home Page -->
-  <div id="homePage" class="page active">
-    <section id="home" class="hero">
-      <div class="hero-background"></div>
-      <div class="hero-grid"></div>
-      <div class="container">
-        <div class="hero-content">
-          <div class="tagline">Engineering Autonomous Intelligence</div>
-          <h1>Building Systems That Perceive, Decide, and Act</h1>
-          <p>We design intelligent autonomous systems that evolve, learn, and collaborate with humans, transforming industries through cutting-edge AI, quantum-inspired computing, and adaptive intelligence.</p>
-          <div class="cta-buttons">
-            <a href="#products" class="btn btn-primary">Explore Our Products</a>
-            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-          </div>
-        </div>
-      </div>
-    </section>
+<section id="home" class="hero">
+<div class="hero-background"></div>
+<div class="hero-grid"></div>
+<div class="container">
+<div class="hero-content">
+<div class="tagline">Engineering Autonomous Intelligence</div>
+<h1>Building Systems That Perceive, Decide, and Act</h1>
+<div class="subtitle">AI-powered solutions for education and research—starting with what matters most</div>
+<p>We design intelligent autonomous systems that evolve, learn, and collaborate with humans, transforming industries through cutting-edge AI and adaptive intelligence.</p>
+<div class="cta-buttons">
+<a href="#contact" class="btn btn-primary">Request a Demo</a>
+<a href="#products" class="btn btn-secondary">Explore Products</a>
+</div>
+<p class="trust-note">Focused on delivering real value through autonomous intelligence</p>
+</div>
+</div>
+</section>
 
-    <section class="stats">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat-item fade-in">
-            <h3>4</h3>
-            <p>Core Innovation Pillars</p>
-          </div>
-          <div class="stat-item fade-in">
-            <h3>AI</h3>
-            <p>Autonomous Intelligence</p>
-          </div>
-          <div class="stat-item fade-in">
-            <h3>∞</h3>
-            <p>Possibilities Unlocked</p>
-          </div>
-          <div class="stat-item fade-in">
-            <h3>2025</h3>
-            <p>Building the Future</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<section class="trust-bar">
+<div class="container">
+<div class="trust-content">
+<div class="trust-item">
+<div class="number">2</div>
+<div class="label">Core Products</div>
+</div>
+<div class="trust-item">
+<div class="number">2025</div>
+<div class="label">Building the Future</div>
+</div>
+<div class="trust-item">
+<div class="number">AI-First</div>
+<div class="label">Autonomous Intelligence</div>
+</div>
+<div class="trust-item">
+<div class="number">∞</div>
+<div class="label">Possibilities Unlocked</div>
+</div>
+</div>
+</div>
+</section>
 
-    <section id="pillars" class="pillars">
-      <div class="container">
-        <h2 class="section-title">What We Do</h2>
-        <p class="section-subtitle">Four foundational pillars driving our innovation and impact</p>
-        <div class="pillars-grid">
-          <div class="pillar-card fade-in">
-            <div class="pillar-icon">🧠</div>
-            <h3>Autonomous Intelligence</h3>
-            <span class="focus">AI/ML • Reinforcement Learning</span>
-            <p>Building agentic AI systems with self-learning optimization and advanced reinforcement learning capabilities that enable autonomous decision-making and continuous improvement.</p>
-            <div class="application">Research & Consulting Wing</div>
-          </div>
+<section id="products" class="products">
+<div class="container">
+<h2 class="section-title">Our Products</h2>
+<p class="section-subtitle">Intelligent solutions transforming education and research</p>
+<div class="products-grid">
+<div class="product-card fade-in">
+<span class="product-badge">Education AI • In Development</span>
+<h3>Abacus Sensei</h3>
+<div class="subtitle">Intelligent Learning Companion for Students & Educators</div>
+<div class="problem">
+<h4>The Problem:</h4>
+<p>Teachers spend 50%+ of their time on repetitive tasks. Students struggle without personalized attention. Traditional abacus teaching can't scale individualized practice.</p>
+</div>
+<p>NeuverraX builds AI learning tools that adapt to each student's needs. Starting with Abacus education, expanding to personalized learning across subjects.</p>
+<button class="btn expand-btn" onclick="toggleProduct('abacus')">
+<span>Learn More</span>
+<span class="arrow">↓</span>
+</button>
+<div id="abacus-details" class="product-details">
+<ul class="features-list">
+<li>Personalized learning paths adapted to individual student needs</li>
+<li>Real-time performance analytics and actionable insights</li>
+<li>Interactive problem-solving with step-by-step guidance</li>
+<li>Teacher tools for curriculum optimization</li>
+<li>Adaptive difficulty scaling based on student performance</li>
+<li>Progress tracking and parent reporting features</li>
+</ul>
+<div class="product-cta">
+<a href="#contact" class="btn btn-primary">Request Demo</a>
+<span class="cta-note">Early access available for pilot partners</span>
+</div>
+</div>
+</div>
 
-          <div class="pillar-card fade-in">
-            <div class="pillar-icon">⚛️</div>
-            <h3>Quantum-Inspired Computing</h3>
-            <span class="focus">Quantum ML • Hybrid Algorithms</span>
-            <p>Pioneering quantum machine learning and hybrid quantum-classical algorithms to solve complex optimization problems at unprecedented speed and scale.</p>
-            <div class="application">Internal R&D + Product Acceleration</div>
-          </div>
+<div class="product-card fade-in">
+<span class="product-badge">Research AI • In Development</span>
+<h3>Research Copilot</h3>
+<div class="subtitle">AI-Powered Research Acceleration Platform</div>
+<div class="problem">
+<h4>The Problem:</h4>
+<p>Researchers spend 30+ hours/week on literature review. Finding relevant cross-disciplinary connections is nearly impossible. Citation management is tedious and time-consuming.</p>
+</div>
+<p>NeuverraX helps researchers find and connect ideas 10x faster with AI-powered literature discovery and analysis.</p>
+<button class="btn expand-btn" onclick="toggleProduct('research')">
+<span>Learn More</span>
+<span class="arrow">↓</span>
+</button>
+<div id="research-details" class="product-details">
+<ul class="features-list">
+<li>Intelligent literature survey with semantic search across disciplines</li>
+<li>AI-powered brainstorming and hypothesis generation</li>
+<li>Global research trends and citation network analysis</li>
+<li>Automated reference management and formatting</li>
+<li>Cross-disciplinary connection discovery</li>
+<li>Collaborative research and knowledge sharing tools</li>
+</ul>
+<div class="product-cta">
+<a href="#contact" class="btn btn-primary">Get Early Access</a>
+<span class="cta-note">Join the waitlist for beta access</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-          <div class="pillar-card fade-in">
-            <div class="pillar-icon">🤝</div>
-            <h3>Human-Autonomy Interaction</h3>
-            <span class="focus">Adaptive Learning • Digital Assistants</span>
-            <p>Creating intelligent interfaces that bridge human intuition with machine precision through adaptive learning tools and context-aware digital assistants.</p>
-            <div class="application">Abacus Sensei & Learning Platforms</div>
-          </div>
+<section class="pillars">
+<div class="container">
+<h2 class="section-title">What We Do</h2>
+<p class="section-subtitle">Four foundational pillars driving our innovation and real-world impact</p>
+<div class="pillars-grid">
+<div class="pillar-card fade-in">
+<div class="pillar-icon">🧠</div>
+<h3>Autonomous Intelligence</h3>
+<span class="focus">AI/ML • Reinforcement Learning</span>
+<p>Building agentic AI systems with self-learning optimization and advanced reinforcement learning capabilities that enable autonomous decision-making and continuous improvement.</p>
+<div class="benefit">Powers: Adaptive learning and intelligent tutoring</div>
+</div>
+<div class="pillar-card fade-in">
+<div class="pillar-icon">⚛️</div>
+<h3>Advanced Computing</h3>
+<span class="focus">Optimization • Hybrid Algorithms</span>
+<p>Leveraging advanced algorithmic approaches and hybrid computational methods to solve complex optimization problems at unprecedented speed and scale.</p>
+<div class="benefit">Powers: Fast problem generation and analysis</div>
+</div>
+<div class="pillar-card fade-in">
+<div class="pillar-icon">🤝</div>
+<h3>Human-AI Interaction</h3>
+<span class="focus">Adaptive Learning • Digital Assistants</span>
+<p>Creating intelligent interfaces that bridge human intuition with machine precision through adaptive learning tools and context-aware digital assistants.</p>
+<div class="benefit">Powers: Abacus Sensei & Research Copilot</div>
+</div>
+<div class="pillar-card fade-in">
+<div class="pillar-icon">📊</div>
+<h3>Intelligent Analytics</h3>
+<span class="focus">Insights • Pattern Recognition</span>
+<p>Developing intelligent analytics systems that surface insights, identify patterns, and provide actionable recommendations from complex data.</p>
+<div class="benefit">Powers: Teacher dashboards and research trends</div>
+</div>
+</div>
+</div>
+</section>
 
-          <div class="pillar-card fade-in">
-            <div class="pillar-icon">🏢</div>
-            <h3>Organizational Autonomy</h3>
-            <span class="focus">Decision Systems • Process Optimization</span>
-            <p>Developing autonomous decision systems and intelligent process optimization tools that transform how organizations operate and innovate.</p>
-            <div class="application">OpsPulse & Innovation Platforms</div>
-          </div>
-        </div>
-      </div>
-    </section>
+<section id="services" class="services">
+<div class="container">
+<h2 class="section-title">Services</h2>
+<p class="section-subtitle">Custom AI solutions and consulting for your business needs</p>
+<div class="services-grid">
+<div class="service-card fade-in">
+<div class="service-icon">🤖</div>
+<h3>AI Consulting & Strategy</h3>
+<p>Expert guidance on AI adoption, feasibility analysis, strategy development, and implementation roadmaps to help your organization leverage autonomous intelligence effectively.</p>
+</div>
 
-    <section id="products" class="products">
-      <div class="container">
-        <h2 class="section-title">Our Products</h2>
-        <p class="section-subtitle">Intelligent solutions transforming education and research</p>
-        <div class="products-grid">
-          <div class="product-card fade-in">
-            <span class="product-badge">Education AI</span>
-            <h3>Abacus Sensei</h3>
-            <div class="subtitle">Intelligent Learning Companion for Students & Educators</div>
-            <p>An adaptive AI-powered learning platform that transforms traditional education through personalized instruction, real-time assessment, and intelligent tutoring systems.</p>
-            <ul class="features-list">
-              <li>Personalized learning paths adapted to individual student needs</li>
-              <li>Real-time performance analytics and insights</li>
-              <li>Interactive problem-solving with step-by-step guidance</li>
-              <li>Teacher tools for curriculum optimization</li>
-              <li>Multi-subject support with adaptive difficulty scaling</li>
-            </ul>
-            <a href="#" onclick="showProductDetail('abacus'); return false;" class="btn btn-primary">Learn More</a>
-          </div>
+<div class="service-card fade-in">
+<div class="service-icon">🌐</div>
+<h3>Custom AI Solutions</h3>
+<p>Design and deploy bespoke AI systems tailored to your specific challenges, from machine learning models to intelligent applications that transform your operations.</p>
+</div>
+</div>
+</div>
+</section>
 
-          <div class="product-card fade-in">
-            <span class="product-badge">Research AI</span>
-            <h3>Research Copilot</h3>
-            <div class="subtitle">AI-Powered Research Acceleration Platform</div>
-            <p>A comprehensive AI assistant for researchers that streamlines literature review, enables intelligent brainstorming, and provides global research insights across disciplines.</p>
-            <ul class="features-list">
-              <li>Intelligent literature survey with semantic search</li>
-              <li>AI-powered brainstorming and hypothesis generation</li>
-              <li>Global research trends and citation analysis</li>
-              <li>Automated reference management and formatting</li>
-              <li>Cross-disciplinary connection discovery</li>
-            </ul>
-            <a href="#" onclick="showProductDetail('research'); return false;" class="btn btn-primary">Learn More</a>
-          </div>
-        </div>
-      </div>
-    </section>
+<section id="about" class="about">
+<div class="container">
+<h2 class="section-title">About NeuverraX</h2>
+<p class="section-subtitle">Pioneering the future of autonomous intelligence</p>
+<div class="about-grid">
+<div class="about-text">
+<p>NeuverraX stands at the forefront of autonomous intelligence, pioneering solutions that bridge the gap between human potential and machine capability. We believe the future belongs to systems that don't just compute: they perceive, decide, learn, and evolve.</p>
+<p>Our multidisciplinary team combines expertise in artificial intelligence, advanced computing, cognitive science, and systems engineering to create products that solve real-world challenges across education, research, and enterprise operations.</p>
+<p>We're building a future where intelligent systems work alongside humans, amplifying capabilities and unlocking new possibilities across every industry.</p>
+<div class="values-grid">
+<div class="value-item">
+<h4>Innovation</h4>
+<p>Pushing boundaries with cutting-edge research and bold ideas</p>
+</div>
+<div class="value-item">
+<h4>Autonomy</h4>
+<p>Building systems that empower human decision-making</p>
+</div>
+<div class="value-item">
+<h4>Impact</h4>
+<p>Creating solutions that transform industries and lives</p>
+</div>
+<div class="value-item">
+<h4>Excellence</h4>
+<p>Delivering world-class quality in everything we build</p>
+</div>
+</div>
+</div>
+<div class="about-visual fade-in">
+<div class="tech-stack">
+<h3>Core Technologies</h3>
+<div class="tech-items">
+<div class="tech-item">
+<div class="tech-icon">🧠</div>
+<div class="tech-info">
+<h4>Deep Learning & Neural Networks</h4>
+<p>Advanced AI models for pattern recognition and decisions</p>
+</div>
+</div>
+<div class="tech-item">
+<div class="tech-icon">⚡</div>
+<div class="tech-info">
+<h4>Advanced Algorithms</h4>
+<p>Sophisticated optimization and computational methods</p>
+</div>
+</div>
+<div class="tech-item">
+<div class="tech-icon">🔄</div>
+<div class="tech-info">
+<h4>Reinforcement Learning</h4>
+<p>Self-improving systems that learn through interaction</p>
+</div>
+</div>
+<div class="tech-item">
+<div class="tech-icon">💬</div>
+<div class="tech-info">
+<h4>Natural Language Processing</h4>
+<p>Human-like understanding and generation of language</p>
+</div>
+</div>
+<div class="tech-item">
+<div class="tech-icon">📊</div>
+<div class="tech-info">
+<h4>Adaptive Intelligence</h4>
+<p>Systems that evolve and personalize for each user</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-    <section id="services" class="services">
-      <div class="container">
-        <h2 class="section-title">Our Services</h2>
-        <p class="section-subtitle">Custom AI solutions and consulting for your business needs</p>
-        <div class="services-grid">
-          <div class="service-card fade-in">
-            <div class="service-icon">🌐</div>
-            <h3>Intelligent Web Applications</h3>
-            <p>Build modern, AI-powered web applications with advanced features like natural language processing, predictive analytics, and adaptive user interfaces tailored to your business goals.</p>
-            <div class="service-pillars">
-              <span class="service-tag">Autonomous Intelligence</span>
-              <span class="service-tag">Human-Autonomy Interaction</span>
-            </div>
-          </div>
+<section id="contact" class="contact">
+<div class="container">
+<h2 class="section-title">Get in Touch</h2>
+<div class="contact-content">
+<p>Ready to explore how autonomous intelligence can transform your work? Let's start a conversation.</p>
 
-          <div class="service-card fade-in">
-            <div class="service-icon">🤖</div>
-            <h3>Custom AI Solutions</h3>
-            <p>Design and deploy bespoke AI systems for your specific challenges, from machine learning models to autonomous decision engines that transform your operations.</p>
-            <div class="service-pillars">
-              <span class="service-tag">Autonomous Intelligence</span>
-              <span class="service-tag">Quantum-Inspired Computing</span>
-            </div>
-          </div>
+<form class="contact-form" id="contactForm" action="https://formspree.io/f/mqayjero" method="POST">
+<div class="form-group">
+<label for="name">Your Name *</label>
+<input type="text" id="name" name="name" required>
+</div>
+<div class="form-group">
+<label for="email">Email Address *</label>
+<input type="email" id="email" name="email" required>
+</div>
+<div class="form-group">
+<label for="role">I am a... *</label>
+<select id="role" name="role" required>
+<option value="">Select your role</option>
+<option value="teacher">Teacher / Educator</option>
+<option value="researcher">Researcher / Academic</option>
+<option value="manager">Operations Manager</option>
+<option value="founder">Founder / Business Owner</option>
+<option value="developer">Developer / Engineer</option>
+<option value="other">Other</option>
+</select>
+</div>
+<div class="form-group">
+<label for="interest">Interested In *</label>
+<select id="interest" name="interest" required>
+<option value="">Select product/service</option>
+<option value="abacus">Abacus Sensei (Education AI)</option>
+<option value="research">Research Copilot (Research AI)</option>
+<option value="consulting">AI Consulting & Strategy</option>
+<option value="custom">Custom AI Solutions</option>
+<option value="partnership">Partnership Opportunity</option>
+</select>
+</div>
+<div class="form-group">
+<label for="message">Tell us about your needs</label>
+<textarea id="message" name="message" placeholder="What challenges are you looking to solve?"></textarea>
+</div>
+<button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+</form>
 
-          <div class="service-card fade-in">
-            <div class="service-icon">📊</div>
-            <h3>AI Consulting & Strategy</h3>
-            <p>Expert guidance on AI adoption, strategy development, and implementation roadmaps to help your organization leverage autonomous intelligence effectively.</p>
-            <div class="service-pillars">
-              <span class="service-tag">All Pillars</span>
-            </div>
-          </div>
+<div class="contact-grid">
+<div class="contact-card">
+<div class="contact-icon">📧</div>
+<h4>Email Us</h4>
+<a href="mailto:info@neuverrax.com">info@neuverrax.com</a>
+<p style="margin-top: 10px; font-size: 0.85rem;"></p>
+</div>
+<div class="contact-card">
+<div class="contact-icon">🌐</div>
+<h4>Visit Us Online</h4>
+<p>neuverrax.com</p>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-          <div class="service-card fade-in">
-            <div class="service-icon">🎓</div>
-            <h3>Education Technology</h3>
-            <p>Develop adaptive learning platforms, intelligent tutoring systems, and educational tools that personalize the learning experience for every student.</p>
-            <div class="service-pillars">
-              <span class="service-tag">Human-Autonomy Interaction</span>
-            </div>
-          </div>
+<footer>
+<div class="container">
+<div class="footer-content">
+<div class="footer-section">
+<h3>NeuverraX</h3>
+<p>Engineering Autonomous Intelligence for education, research, and enterprise.</p>
+<p style="margin-top: 20px;">Building systems that perceive, decide, and act.</p>
+</div>
+<div class="footer-section">
+<h3>Products</h3>
+<a href="#products">Abacus Sensei</a>
+<a href="#products">Research Copilot</a>
+<a href="#services">AI Consulting</a>
+<a href="#services">Custom Solutions</a>
+</div>
+<div class="footer-section">
+<h3>Company</h3>
+<a href="#about">About Us</a>
+<a href="#products">What We Do</a>
+<a href="#contact">Contact</a>
+</div>
+<div class="footer-section">
+<h3>Resources</h3>
+<a href="#contact">Request Demo</a>
+<a href="#contact">Early Access</a>
+<a href="#">Privacy Policy</a>
+<a href="#">Terms of Service</a>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; 2025 NeuverraX. All rights reserved. | Engineering Autonomous Intelligence</p>
+</div>
+</div>
+</footer>
 
-          <div class="service-card fade-in">
-            <div class="service-icon">🔬</div>
-            <h3>Research & Development</h3>
-            <p>Partner with us on cutting-edge R&D projects in AI, quantum computing, and autonomous systems to push the boundaries of what's possible.</p>
-            <div class="service-pillars">
-              <span class="service-tag">Quantum-Inspired Computing</span>
-            </div>
-          </div>
+<script src="script.js"></script>
 
-          <div class="service-card fade-in">
-            <div class="service-icon">⚙️</div>
-            <h3>Process Automation</h3>
-            <p>Implement intelligent automation systems that optimize workflows, reduce manual effort, and enable autonomous decision-making across your organization.</p>
-            <div class="service-pillars">
-              <span class="service-tag">Organizational Autonomy</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- Google Analytics Placeholder - Replace with your GA4 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N094D25M3E"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-N094D25M3E');
+</script>
 
-    <section id="about" class="about">
-      <div class="container">
-        <h2 class="section-title">About NeuverraX</h2>
-        <p class="section-subtitle">Pioneering the future of autonomous intelligence</p>
-        
-        <div class="about-grid">
-          <div class="about-text">
-            <p>NeuverraX stands at the forefront of autonomous intelligence, pioneering solutions that bridge the gap between human potential and machine capability. We believe the future belongs to systems that don't just compute: they perceive, decide, learn, and evolve.</p>
-            
-            <p>Our multidisciplinary team combines expertise in artificial intelligence, quantum computing, cognitive science, and systems engineering to create products that solve real-world challenges across education, research, and enterprise operations.</p>
-
-            <p>We're building a future where intelligent systems work alongside humans, amplifying capabilities and unlocking new possibilities across every industry.</p>
-
-            <div class="values-grid">
-              <div class="value-item">
-                <h4>Innovation</h4>
-                <p>Pushing boundaries with cutting-edge research and bold ideas</p>
-              </div>
-              <div class="value-item">
-                <h4>Autonomy</h4>
-                <p>Building systems that empower human decision-making</p>
-              </div>
-              <div class="value-item">
-                <h4>Impact</h4>
-                <p>Creating solutions that transform industries and lives</p>
-              </div>
-              <div class="value-item">
-                <h4>Excellence</h4>
-                <p>Delivering world-class quality in everything we build</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="about-visual fade-in">
-            <div class="tech-stack">
-              <h3>Core Technologies</h3>
-              <div class="tech-items">
-                <div class="tech-item">
-                  <div class="tech-icon">🧠</div>
-                  <div class="tech-info">
-                    <h4>Deep Learning & Neural Networks</h4>
-                    <p>Advanced AI models for complex pattern recognition and decision-making</p>
-                  </div>
-                </div>
-                <div class="tech-item">
-                  <div class="tech-icon">⚛️</div>
-                  <div class="tech-info">
-                    <h4>Quantum-Inspired Algorithms</h4>
-                    <p>Next-generation optimization and computational methods</p>
-                  </div>
-                </div>
-                <div class="tech-item">
-                  <div class="tech-icon">🔄</div>
-                  <div class="tech-info">
-                    <h4>Reinforcement Learning</h4>
-                    <p>Self-improving systems that learn through interaction</p>
-                  </div>
-                </div>
-                <div class="tech-item">
-                  <div class="tech-icon">💬</div>
-                  <div class="tech-info">
-                    <h4>Natural Language Processing</h4>
-                    <p>Human-like understanding and generation of language</p>
-                  </div>
-                </div>
-                <div class="tech-item">
-                  <div class="tech-icon">📊</div>
-                  <div class="tech-info">
-                    <h4>Adaptive Intelligence</h4>
-                    <p>Systems that evolve and personalize based on user behavior</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact">
-      <div class="container">
-        <h2 class="section-title">Get in Touch</h2>
-        <div class="contact-content">
-          <p>Ready to explore how autonomous intelligence can transform your organization? Let's start a conversation.</p>
-          <div class="contact-grid">
-            <div class="contact-card">
-              <div class="contact-icon">
-                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              </div>
-              <h4>Email Us</h4>
-              <a href="mailto:info@neuverrax.com">info@neuverrax.com</a>
-            </div>
-            
-            <div class="contact-card">
-              <div class="contact-icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-              </div>
-              <h4>Visit Us Online</h4>
-              <p>neuverrax.com</p>
-            </div>
-          </div>
-          <div style="margin-top: 50px;">
-            <a href="mailto:info@neuverrax.com" class="btn btn-primary">Start a Project</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- Abacus Sensei Detail Page -->
-  <div id="abacusDetail" class="product-detail">
-    <div class="container">
-      <a href="#" class="back-button" onclick="showPage('home', 'products'); return false;">← Back to Products</a>
-      
-      <div class="product-hero">
-        <span class="product-badge">Education AI</span>
-        <h1>Abacus Sensei</h1>
-        <div class="subtitle">Transforming Education Through Adaptive AI</div>
-        <p>Abacus Sensei is an intelligent learning companion that adapts to each student's unique learning style, pace, and needs. By leveraging advanced AI and machine learning, we're creating a personalized educational experience that empowers both students and educators.</p>
-      </div>
-
-      <div class="feature-grid">
-        <div class="feature-box">
-          <h3>🎯 Personalized Learning Paths</h3>
-          <p>AI algorithms analyze student performance in real-time to create customized learning journeys. Each student receives content tailored to their comprehension level, learning speed, and preferred learning style.</p>
-        </div>
-
-        <div class="feature-box">
-          <h3>📊 Real-Time Analytics</h3>
-          <p>Comprehensive dashboards provide educators and parents with detailed insights into student progress, identifying strengths, weaknesses, and areas requiring additional support.</p>
-        </div>
-
-        <div class="feature-box">
-          <h3>🤖 Intelligent Tutoring</h3>
-          <p>Our AI tutor provides step-by-step guidance, explains concepts in multiple ways, and adapts explanations based on student responses and understanding patterns.</p>
-        </div>
-
-        <div class="feature-box">
-          <h3>📚 Multi-Subject Support</h3>
-          <p>From mathematics and science to languages and humanities, Abacus Sensei covers a comprehensive curriculum with adaptive difficulty scaling across all subjects.</p>
-        </div>
-
-        <div class="feature-box">
-          <h3>👨‍🏫 Teacher Empowerment</h3>
-          <p>Advanced tools for educators to optimize curriculum, identify at-risk students early, and provide targeted interventions where they're needed most.</p>
-        </div>
-
-        <div class="feature-box">
-          <h3>🎮 Engaging Experience</h3>
-          <p>Gamification elements and interactive problem-solving keep students motivated and engaged, turning learning into an enjoyable and rewarding experience.</p>
-        </div>
-      </div>
-
-      <div class="cta-section">
-        <h2>Ready to Transform Your Classroom?</h2>
-        <p>Join educators worldwide who are already using Abacus Sensei to create better learning outcomes.</p>
-        <a href="#contact" onclick="showPage('home', 'contact'); return false;" class="btn btn-primary">Request a Demo</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Research Copilot Detail Page -->
-  <div id="researchDetail" class="product-detail">
-    <div class="container">
-      <a href="#" class="back-button" onclick="showPage('home', 'products'); return false;">← Back to Products</a>
-      
-      <div class="product-hero">
-        <span class="product-badge">Research AI</span>
-        <h1>Research Copilot</h1>
-        <div class="subtitle">Accelerate Your Research with AI Intelligence</div>
-        <p>Research Copilot is your AI-powered research assistant that streamlines the entire research process, from initial brainstorming to final publication. Harness the power of artificial intelligence to discover insights faster and make breakthrough connections across disciplines.</p>
-      </div>
-
-      <div class="feature-grid">
-        <div class="feature-box">
-          <h3>🔍 Intelligent Literature Survey</h3>
-          <p>Advanced semantic search technology discovers relevant papers across millions of publications. Our AI understands context and meaning, finding connections that traditional keyword searches miss.</p>
-        </div>
-
-        <div class="feature-box">
-          <h3>💡 AI-Powered Brainstorming</h3>
-          <p>Generate research hypotheses, explore new angles, and discover innovative approaches to your research questions through intelligent dialogue with our AI system.</p>
-        </div>
-
-        <div class="feature-box">
-          <h3>🌍 Global Research Trends</h3>
-          <p>Stay ahead with real-time analysis of emerging research trends, citation patterns, and influential work in your field from institutions worldwide.</p>
-        </div>
-
-        <div class="feature-box">
-          <h3>📝 Reference Management</h3>
-          <p>Automatically organize, format, and manage references in any citation style. Never worry about citation formatting again.</p>
-        </div>
-
-        <div class="feature-box">
-          <h3>🔗 Cross-Disciplinary Discovery</h3>
-          <p>Uncover connections between different fields and disciplines. Our AI identifies relevant research from adjacent domains that could inform your work.</p>
-        </div>
-
-        <div class="feature-box">
-          <h3>📈 Citation Analysis</h3>
-          <p>Track the impact of papers, identify key researchers in your field, and understand the citation networks that shape academic discourse.</p>
-        </div>
-      </div>
-
-      <div class="cta-section">
-        <h2>Accelerate Your Research Today</h2>
-        <p>Join researchers from top institutions who are transforming their research workflow with AI.</p>
-        <a href="#contact" onclick="showPage('home', 'contact'); return false;" class="btn btn-primary">Get Early Access</a>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 NeuverraX. All rights reserved. | Engineering Autonomous Intelligence</p>
-    </div>
-  </footer>
-
-  <script>
-    // Page navigation
-    function showPage(pageName, scrollTo) {
-      // Hide all pages
-      document.querySelectorAll('.page, .product-detail').forEach(page => {
-        page.classList.remove('active');
-      });
-      
-      // Show requested page
-      if (pageName === 'home') {
-        document.getElementById('homePage').classList.add('active');
-        
-        // Scroll to section if specified
-        if (scrollTo) {
-          setTimeout(() => {
-            const element = document.getElementById(scrollTo);
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }
-          }, 100);
-        } else {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      }
-    }
-
-    function showProductDetail(product) {
-      // Hide all pages
-      document.querySelectorAll('.page, .product-detail').forEach(page => {
-        page.classList.remove('active');
-      });
-      
-      // Show product detail page
-      if (product === 'abacus') {
-        document.getElementById('abacusDetail').classList.add('active');
-      } else if (product === 'research') {
-        document.getElementById('researchDetail').classList.add('active');
-      }
-      
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Header scroll effect
-    const header = document.getElementById('header');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
-
-    // Fade in animation on scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-in').forEach(el => {
-      observer.observe(el);
-    });
-  </script>
 </body>
 </html>
