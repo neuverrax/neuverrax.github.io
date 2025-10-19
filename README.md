@@ -5,7 +5,7 @@ Official landing page for NeuverraX
 
 **Engineering Autonomous Intelligence for Education and Research**
 
-Live Site: [neuverrax.com](https://neuverrax.com) *(update with your actual URL)*
+Live Site: [neuverrax.com](https://neuverrax.com)
 
 ## About
 
@@ -21,34 +21,7 @@ NeuverraX builds AI-powered autonomous intelligence systems that transform how p
 - HTML5
 - CSS3 (Custom variables, Grid, Flexbox)
 - Vanilla JavaScript (ES6+)
-- GitHub Pages Hosting
-
-## Local Development
-
-1. Clone the repository:
-```bash
-git clone https://github.com/YOUR_USERNAME/neuverrax-website.git
-```
-
-2. Open `index.html` in your browser
-```bash
-cd neuverrax-website
-open index.html  # macOS
-start index.html # Windows
-xdg-open index.html # Linux
-```
-
-3. Make changes and test locally before pushing
-
-## File Structure
-
-```
-├── index.html       # Main HTML structure
-├── style.css        # All styling and animations
-├── script.js        # Interactive functionality
-├── README.md        # This file
-└── .gitignore       # Git exclusions
-```
+- GitHub
 
 ## Features
 
@@ -67,14 +40,6 @@ xdg-open index.html # Linux
 - Safari (latest)
 - Mobile browsers (iOS Safari, Chrome Mobile)
 
-## Updates
-
-To update the live site:
-1. Make changes to files
-2. Commit: `git commit -m "Description of changes"`
-3. Push: `git push origin main`
-4. Changes go live automatically in 1-2 minutes
-
 ## Contact
 
 - Email: info@neuverrax.com
@@ -86,4 +51,4 @@ To update the live site:
 
 ---
 
-Built with ❤️ for the future of learning
+Built for the future of learning
