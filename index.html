@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-<!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N094D25M3E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -86,6 +86,7 @@
 <a href="#products">Products</a>
 <a href="#services">Services</a>
 <a href="#about">About</a>
+<a href="blog.html">Blog</a>
 <a href="#contact">Contact</a>
 </nav>
 </div>
@@ -337,43 +338,50 @@
 <p>Ready to explore how autonomous intelligence can transform your work? Let's start a conversation.</p>
 
 <form class="contact-form" id="contactForm" action="https://formspree.io/f/mqayjero" method="POST">
-  <div class="form-group">
-  <label for="name">Your Name *</label>
-  <input type="text" id="name" name="name" required>
-  </div>
-  <div class="form-group">
-  <label for="email">Email Address *</label>
-  <input type="email" id="email" name="email" required>
-  </div>
-  <div class="form-group">
-  <label for="role">I am a... *</label>
-  <select id="role" name="role" required>
-  <option value="">Select your role</option>
-  <option value="teacher">Teacher / Educator</option>
-  <option value="researcher">Researcher / Academic</option>
-  <option value="manager">Operations Manager</option>
-  <option value="founder">Founder / Business Owner</option>
-  <option value="developer">Developer / Engineer</option>
-  <option value="other">Other</option>
-  </select>
-  </div>
-  <div class="form-group">
-  <label for="interest">Interested In *</label>
-  <select id="interest" name="interest" required>
-  <option value="">Select product/service</option>
-  <option value="abacus">Abacus Sensei (Education AI)</option>
-  <option value="research">Research Copilot (Research AI)</option>
-  <option value="consulting">AI Consulting & Strategy</option>
-  <option value="custom">Custom AI Solutions</option>
-  <option value="partnership">Partnership Opportunity</option>
-  </select>
-  </div>
-  <div class="form-group">
-  <label for="message">Tell us about your needs</label>
-  <textarea id="message" name="message" placeholder="What challenges are you looking to solve?"></textarea>
-  </div>
-  <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+<div class="form-group">
+<label for="name">Your Name *</label>
+<input type="text" id="name" name="name" required>
+</div>
+<div class="form-group">
+<label for="email">Email Address *</label>
+<input type="email" id="email" name="email" required>
+</div>
+<div class="form-group">
+<label for="role">I am a... *</label>
+<select id="role" name="role" required>
+<option value="">Select your role</option>
+<option value="teacher">Teacher / Educator</option>
+<option value="researcher">Researcher / Academic</option>
+<option value="manager">Operations Manager</option>
+<option value="founder">Founder / Business Owner</option>
+<option value="developer">Developer / Engineer</option>
+<option value="other">Other</option>
+</select>
+</div>
+<div class="form-group">
+<label for="interest">Interested In *</label>
+<select id="interest" name="interest" required>
+<option value="">Select product/service</option>
+<option value="abacus">Abacus Sensei (Education AI)</option>
+<option value="research">Research Copilot (Research AI)</option>
+<option value="consulting">AI Consulting & Strategy</option>
+<option value="custom">Custom AI Solutions</option>
+<option value="partnership">Partnership Opportunity</option>
+</select>
+</div>
+<div class="form-group">
+<label for="message">Tell us about your needs</label>
+<textarea id="message" name="message" placeholder="What challenges are you looking to solve?"></textarea>
+</div>
+<button type="submit" class="btn btn-primary submit-btn">Send Message</button>
 </form>
+
+<p id="form-status" style="display:none; color:green; margin-top:10px;">
+  ✅ Thank you! Your message has been sent.
+</p>
+<p id="form-error" style="display:none; color:red; margin-top:10px;">
+  ❌ Oops! Something went wrong. Please try again.
+</p>
 
 <div class="contact-grid">
 <div class="contact-card">

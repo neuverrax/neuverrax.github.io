@@ -90,6 +90,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
       // Show success message
       form.style.display = 'none';
       formSuccess.style.display = 'block';
+      formSuccess.textContent = "✅ Message sent successfully!";
       
       // Scroll to success message
       formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
