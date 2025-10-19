@@ -99,7 +99,7 @@
 <div class="hero-content">
 <div class="tagline">Engineering Autonomous Intelligence</div>
 <h1>Building Systems That Perceive, Decide, and Act</h1>
-<div class="subtitle">AI-powered solutions for education and research—starting with what matters most</div>
+<div class="subtitle">AI-powered solutions for education and research - starting with what matters most</div>
 <p>We design intelligent autonomous systems that evolve, learn, and collaborate with humans, transforming industries through cutting-edge AI and adaptive intelligence.</p>
 <div class="cta-buttons">
 <a href="#contact" class="btn btn-primary">Request a Demo</a>
@@ -337,42 +337,42 @@
 <p>Ready to explore how autonomous intelligence can transform your work? Let's start a conversation.</p>
 
 <form class="contact-form" id="contactForm" action="https://formspree.io/f/mqayjero" method="POST">
-<div class="form-group">
-<label for="name">Your Name *</label>
-<input type="text" id="name" name="name" required>
-</div>
-<div class="form-group">
-<label for="email">Email Address *</label>
-<input type="email" id="email" name="email" required>
-</div>
-<div class="form-group">
-<label for="role">I am a... *</label>
-<select id="role" name="role" required>
-<option value="">Select your role</option>
-<option value="teacher">Teacher / Educator</option>
-<option value="researcher">Researcher / Academic</option>
-<option value="manager">Operations Manager</option>
-<option value="founder">Founder / Business Owner</option>
-<option value="developer">Developer / Engineer</option>
-<option value="other">Other</option>
-</select>
-</div>
-<div class="form-group">
-<label for="interest">Interested In *</label>
-<select id="interest" name="interest" required>
-<option value="">Select product/service</option>
-<option value="abacus">Abacus Sensei (Education AI)</option>
-<option value="research">Research Copilot (Research AI)</option>
-<option value="consulting">AI Consulting & Strategy</option>
-<option value="custom">Custom AI Solutions</option>
-<option value="partnership">Partnership Opportunity</option>
-</select>
-</div>
-<div class="form-group">
-<label for="message">Tell us about your needs</label>
-<textarea id="message" name="message" placeholder="What challenges are you looking to solve?"></textarea>
-</div>
-<button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+  <div class="form-group">
+  <label for="name">Your Name *</label>
+  <input type="text" id="name" name="name" required>
+  </div>
+  <div class="form-group">
+  <label for="email">Email Address *</label>
+  <input type="email" id="email" name="email" required>
+  </div>
+  <div class="form-group">
+  <label for="role">I am a... *</label>
+  <select id="role" name="role" required>
+  <option value="">Select your role</option>
+  <option value="teacher">Teacher / Educator</option>
+  <option value="researcher">Researcher / Academic</option>
+  <option value="manager">Operations Manager</option>
+  <option value="founder">Founder / Business Owner</option>
+  <option value="developer">Developer / Engineer</option>
+  <option value="other">Other</option>
+  </select>
+  </div>
+  <div class="form-group">
+  <label for="interest">Interested In *</label>
+  <select id="interest" name="interest" required>
+  <option value="">Select product/service</option>
+  <option value="abacus">Abacus Sensei (Education AI)</option>
+  <option value="research">Research Copilot (Research AI)</option>
+  <option value="consulting">AI Consulting & Strategy</option>
+  <option value="custom">Custom AI Solutions</option>
+  <option value="partnership">Partnership Opportunity</option>
+  </select>
+  </div>
+  <div class="form-group">
+  <label for="message">Tell us about your needs</label>
+  <textarea id="message" name="message" placeholder="What challenges are you looking to solve?"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
 </form>
 
 <div class="contact-grid">
@@ -380,7 +380,7 @@
 <div class="contact-icon">📧</div>
 <h4>Email Us</h4>
 <a href="mailto:info@neuverrax.com">info@neuverrax.com</a>
-<p style="margin-top: 10px; font-size: 0.85rem;"></p>
+<p style="margin-top: 10px; font-size: 0.85rem;">We respond within 24 hours</p>
 </div>
 <div class="contact-card">
 <div class="contact-icon">🌐</div>
@@ -429,14 +429,28 @@
 
 <script src="script.js"></script>
 
-<!-- Google Analytics Placeholder - Replace with your GA4 ID -->
+<!-- Google Analytics 4 (GA4) - REPLACE G-XXXXXXXXXX with your Measurement ID -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N094D25M3E"></script>
 <script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-N094D25M3E');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-N094D25M3E', {
+    'anonymize_ip': true,
+    'cookie_flags': 'SameSite=None;Secure'
+  });
 </script>
+
+<!-- Microsoft Clarity (Optional - Replace PROJECT_ID) -->
+<!--
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "PROJECT_ID");
+</script>
+-->
 
 </body>
 </html>

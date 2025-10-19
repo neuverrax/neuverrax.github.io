@@ -64,23 +64,62 @@ function toggleProduct(productId) {
   }
 }
 
-// Form handling
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+// Form handling with Formspree
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
-  const formData = new FormData(this);
-  const data = Object.fromEntries(formData);
   
-  // Log form data (in production, send to backend/email service)
-  console.log('Form submission:', data);
-  console.log('Role:', data.role);
-  console.log('Interest:', data.interest);
-  console.log('Message:', data.message);
+  const form = this;
+  const submitButton = form.querySelector('.submit-btn');
+  const originalText = submitButton.textContent;
+  const formSuccess = document.getElementById('form-success');
   
-  // Show success message
-  alert('Thank you for your interest! We will contact you within 24 hours.\n\nFor immediate assistance, email us at info@neuverrax.com');
+  // Show loading state
+  submitButton.textContent = 'Sending...';
+  submitButton.disabled = true;
   
-  // Reset form
-  this.reset();
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    
+    if (response.ok) {
+      // Show success message
+      form.style.display = 'none';
+      formSuccess.style.display = 'block';
+      
+      // Scroll to success message
+      formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      // Track in analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'form_submission', {
+          'event_category': 'Contact',
+          'event_label': 'Contact Form'
+        });
+      }
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        form.reset();
+        form.style.display = 'block';
+        formSuccess.style.display = 'none';
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+      }, 5000);
+      
+    } else {
+      throw new Error('Form submission failed');
+    }
+  } catch (error) {
+    // Show error message
+    alert('There was a problem submitting your form. Please email us directly at info@neuverrax.com');
+    submitButton.textContent = originalText;
+    submitButton.disabled = false;
+  }
 });
 
 // Smooth scrolling for navigation
