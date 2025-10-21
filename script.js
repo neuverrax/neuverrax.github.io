@@ -55,7 +55,6 @@ function toggleProduct(productId) {
   
   if (details.classList.contains('expanded')) {
     button.querySelector('span:first-child').textContent = 'Show Less';
-    // Smooth scroll to product details
     setTimeout(() => {
       details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 100);
@@ -90,7 +89,6 @@ document.getElementById('contactForm').addEventListener('submit', async function
       // Show success message
       form.style.display = 'none';
       formSuccess.style.display = 'block';
-      formSuccess.textContent = "✅ Message sent successfully!";
       
       // Scroll to success message
       formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -103,7 +101,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
         });
       }
       
-      // Reset form after 3 seconds
+      // Reset form after 5 seconds
       setTimeout(() => {
         form.reset();
         form.style.display = 'block';
@@ -116,10 +114,16 @@ document.getElementById('contactForm').addEventListener('submit', async function
       throw new Error('Form submission failed');
     }
   } catch (error) {
-    // Show error message
+    // Show error message but KEEP FORM VISIBLE
     alert('There was a problem submitting your form. Please email us directly at info@neuverrax.com');
+    
+    // Reset button state
     submitButton.textContent = originalText;
     submitButton.disabled = false;
+    
+    // IMPORTANT: Keep form visible
+    form.style.display = 'block';
+    formSuccess.style.display = 'none';
   }
 });
 
