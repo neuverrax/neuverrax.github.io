@@ -35,7 +35,6 @@ function toggleProduct(productId) {
   const allDetails = document.querySelectorAll('.product-details');
   const allButtons = document.querySelectorAll('.expand-btn');
   
-  // Close all other products
   allDetails.forEach(detail => {
     if (detail.id !== productId + '-details') {
       detail.classList.remove('expanded');
@@ -49,7 +48,6 @@ function toggleProduct(productId) {
     }
   });
   
-  // Toggle current product
   details.classList.toggle('expanded');
   button.classList.toggle('expanded');
   
@@ -63,8 +61,8 @@ function toggleProduct(productId) {
   }
 }
 
-// Form handling with Formspree
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
+// Form handling - Simple and reliable approach
+document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
   
   const form = this;
@@ -76,32 +74,31 @@ document.getElementById('contactForm').addEventListener('submit', async function
   submitButton.textContent = 'Sending...';
   submitButton.disabled = true;
   
-  try {
-    const response = await fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: {
-        'Accept': 'application/json'
-      }
-    });
-    
+  // Use Formspree's AJAX submission
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: {
+      'Accept': 'application/json'
+    }
+  }).then(response => {
     if (response.ok) {
-      // Show success message
+      // SUCCESS - Show success message
       form.style.display = 'none';
       formSuccess.style.display = 'block';
       
       // Scroll to success message
       formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
       
-      // Track in analytics
+      // Track in analytics if available
       if (typeof gtag !== 'undefined') {
         gtag('event', 'form_submission', {
           'event_category': 'Contact',
-          'event_label': 'Contact Form'
+          'event_label': 'Contact Form Success'
         });
       }
       
-      // Reset form after 5 seconds
+      // Reset everything after 5 seconds
       setTimeout(() => {
         form.reset();
         form.style.display = 'block';
@@ -111,20 +108,19 @@ document.getElementById('contactForm').addEventListener('submit', async function
       }, 5000);
       
     } else {
-      throw new Error('Form submission failed');
+      // Formspree returned error
+      response.json().then(data => {
+        alert('Error: ' + (data.error || 'Form submission failed. Please try again or email us at info@neuverrax.com'));
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+      });
     }
-  } catch (error) {
-    // Show error message but KEEP FORM VISIBLE
+  }).catch(error => {
+    // Network error or other issue
     alert('There was a problem submitting your form. Please email us directly at info@neuverrax.com');
-    
-    // Reset button state
     submitButton.textContent = originalText;
     submitButton.disabled = false;
-    
-    // IMPORTANT: Keep form visible
-    form.style.display = 'block';
-    formSuccess.style.display = 'none';
-  }
+  });
 });
 
 // Smooth scrolling for navigation
