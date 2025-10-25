@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment - Research Copilot Pro | NeuverraX</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<style>
+.payment-container {
+  max-width: 800px;
+  margin: 100px auto;
+  padding: 40px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+.plan-summary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.price-display {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.feature-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.feature-list li:before {
+  content: "✓ ";
+  color: #667eea;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.pay-button {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 18px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.pay-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.pay-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.security-badges {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.security-badge {
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+}
+
+.error-message {
+  background: #fee;
+  color: #c33;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: none;
+}
+
+.loading {
+  display: none;
+  text-align: center;
+  padding: 20px;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+</head>
+<body>
+
+<header id="header">
+<div class="container">
+<div class="header-content">
+<div class="logo-container">
+<div class="logo-icon">N</div>
+<h1 class="logo">NeuverraX</h1>
+</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="https://research.neuverrax.com">Research Copilot</a>
+<a href="index.html#contact">Contact</a>
+</nav>
+</div>
+</div>
+</header>
+
+<div class="payment-container">
+  <div id="error-message" class="error-message"></div>
+  
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Processing your payment...</p>
+  </div>
+
+  <div id="payment-form">
+    <div class="plan-summary">
+      <h2 style="margin: 0 0 10px 0;">Research Copilot Pro</h2>
+      <p id="plan-type" style="font-size: 18px; opacity: 0.9;">Monthly Subscription</p>
+      <div class="price-display" id="price-display">₹399</div>
+      <p style="opacity: 0.9;">Billed monthly • Cancel anytime</p>
+      <p id="student-discount" style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 8px; margin-top: 15px; display: none;">
+        🎓 Student Discount Applied: Save 40%
+      </p>
+    </div>
+
+    <h3 style="margin-bottom: 15px;">What You Get:</h3>
+    <ul class="feature-list">
+      <li><strong>Unlimited queries</strong> per day (vs 5 free)</li>
+      <li><strong>Enhanced 9-section analysis</strong> (vs 6 free)</li>
+      <li><strong>18-25 references</strong> per query (vs 15 free)</li>
+      <li><strong>Priority processing</strong> - Faster results</li>
+      <li><strong>Export to PDF & BibTeX</strong></li>
+      <li><strong>No watermarks</strong> on exports</li>
+      <li><strong>Unlimited query history</strong></li>
+      <li><strong>Email support</strong> within 24 hours</li>
+    </ul>
+
+    <div style="background: #f0f9ff; padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #667eea;">
+      <p style="margin: 0; font-size: 14px; color: #333;">
+        <strong>📊 Real Research Impact:</strong><br>
+        • Based on current features: 6-9 comprehensive sections<br>
+        • 15-25 authentic academic references with citations<br>
+        • Natural language processing for query understanding<br>
+        • Literature review compilation from training data<br>
+        • Priority queue access for faster processing
+      </p>
+    </div>
+
+    <button id="pay-button" class="pay-button">
+      Proceed to Secure Payment
+    </button>
+
+    <div class="security-badges">
+      <div class="security-badge">
+        <div style="font-size: 24px;">🔒</div>
+        <strong>Secure</strong><br>
+        256-bit SSL
+      </div>
+      <div class="security-badge">
+        <div style="font-size: 24px;">💳</div>
+        <strong>Razorpay</strong><br>
+        PCI DSS Compliant
+      </div>
+      <div class="security-badge">
+        <div style="font-size: 24px;">⚡</div>
+        <strong>Instant</strong><br>
+        Immediate Access
+      </div>
+    </div>
+
+    <p style="text-align: center; font-size: 12px; color: #666; margin-top: 20px;">
+      By proceeding, you agree to our <a href="terms-of-service.html">Terms of Service</a> and <a href="privacy-policy.html">Privacy Policy</a>
+    </p>
+  </div>
+</div>
+
+<script>
+// Get URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+const plan = urlParams.get('plan') || 'pro-monthly';
+const userId = urlParams.get('userId');
+const email = urlParams.get('email');
+const name = urlParams.get('name');
+const isStudent = urlParams.get('isStudent') === 'true';
+
+// Validate required parameters
+if (!userId || !email) {
+  document.getElementById('error-message').textContent = 
+    'Invalid payment link. Please start from Research Copilot.';
+  document.getElementById('error-message').style.display = 'block';
+  document.getElementById('payment-form').style.display = 'none';
+}
+
+// Pricing configuration
+const PRICING = {
+  'pro-monthly': { base: 399, student: 239, period: 'month' },
+  'pro-annual': { base: 3999, student: 2399, period: 'year' }
+};
+
+const selectedPlan = PRICING[plan];
+const amount = isStudent ? selectedPlan.student : selectedPlan.base;
+
+// Update UI
+document.getElementById('plan-type').textContent = 
+  plan === 'pro-annual' ? 'Annual Subscription (Save 17%)' : 'Monthly Subscription';
+document.getElementById('price-display').textContent = `₹${amount}`;
+
+if (isStudent) {
+  document.getElementById('student-discount').style.display = 'block';
+}
+
+// Payment handler
+document.getElementById('pay-button').addEventListener('click', async function() {
+  const button = this;
+  button.disabled = true;
+  button.textContent = 'Processing...';
+  
+  try {
+    // Create order on backend
+    const response = await fetch('http://localhost:5000/api/create-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        amount: amount,
+        currency: 'INR',
+        plan: plan,
+        userId: userId,
+        email: email,
+        name: name
+      })
+    });
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message || 'Failed to create order');
+    }
+
+    // Initialize Razorpay
+    const options = {
+      key: data.key_id,
+      amount: data.amount,
+      currency: data.currency,
+      name: 'NeuverraX',
+      description: `Research Copilot Pro - ${plan === 'pro-annual' ? 'Annual' : 'Monthly'}`,
+      image: 'https://neuverrax.com/logo.png',
+      order_id: data.order_id,
+      handler: async function (response) {
+        // Show loading
+        document.getElementById('payment-form').style.display = 'none';
+        document.getElementById('loading').style.display = 'block';
+
+        try {
+          // Verify payment on backend
+          const verifyResponse = await fetch('http://localhost:5000/api/verify-payment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+              plan: plan,
+              userId: userId,
+              email: email
+            })
+          });
+
+          const verifyData = await verifyResponse.json();
+
+          if (verifyData.success) {
+            // Payment successful - redirect to research copilot with success token
+            const successUrl = `https://research.neuverrax.com?payment=success&token=${verifyData.token}&plan=${plan}`;
+            window.location.href = successUrl;
+          } else {
+            throw new Error('Payment verification failed');
+          }
+        } catch (error) {
+          document.getElementById('loading').style.display = 'none';
+          document.getElementById('error-message').textContent = 
+            'Payment verification failed. Please contact support@neuverrax.com with your payment ID: ' + 
+            response.razorpay_payment_id;
+          document.getElementById('error-message').style.display = 'block';
+        }
+      },
+      prefill: {
+        name: name,
+        email: email
+      },
+      notes: {
+        plan: plan,
+        userId: userId
+      },
+      theme: {
+        color: '#667eea'
+      },
+      modal: {
+        ondismiss: function() {
+          button.disabled = false;
+          button.textContent = 'Proceed to Secure Payment';
+        }
+      }
+    };
+
+    const razorpay = new Razorpay(options);
+    razorpay.open();
+
+  } catch (error) {
+    console.error('Payment error:', error);
+    document.getElementById('error-message').textContent = 
+      'Failed to initiate payment. Please try again or contact support.';
+    document.getElementById('error-message').style.display = 'block';
+    button.disabled = false;
+    button.textContent = 'Proceed to Secure Payment';
+  }
+});
+</script>
+
+<footer>
+<div class="container">
+<div class="footer-content">
+<div class="footer-section">
+<h3>NeuverraX</h3>
+<p>Engineering Autonomous Intelligence</p>
+</div>
+<div class="footer-section">
+<h3>Support</h3>
+<a href="mailto:info@neuverrax.com">info@neuverrax.com</a>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; 2025 NeuverraX. All rights reserved.</p>
+</div>
+</div>
+</footer>
+
+</body>
+</html>
