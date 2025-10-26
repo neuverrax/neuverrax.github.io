@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard - Research Copilot</title>
+  <style>
+    body { font-family: system-ui; padding: 20px; background: #f5f5f5; margin: 0; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 16px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .stat-card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .stat-card h3 { margin: 0 0 10px 0; font-size: 14px; color: #666; text-transform: uppercase; }
+    .stat-card .number { font-size: 36px; font-weight: bold; color: #667eea; margin: 0; }
+    table {
+      width: 100%;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    th, td { padding: 15px; text-align: left; }
+    th {
+      background: #667eea;
+      color: white;
+      font-weight: 600;
+    }
+    tr:nth-child(even) { background: #f9f9f9; }
+    tr:hover { background: #f0f0f0; }
+    .badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .pro { background: #10b981; color: white; }
+    .free { background: #6b7280; color: white; }
+    .logout-btn {
+      background: rgba(255,255,255,0.2);
+      border: 2px solid white;
+      color: white;
+      padding: 8px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .logout-btn:hover { background: rgba(255,255,255,0.3); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1 style="margin: 0;">Research Copilot Admin</h1>
+        <p style="margin: 5px 0 0 0; opacity: 0.9;">User & Subscription Management</p>
+      </div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <h3>Total Users</h3>
+        <p class="number" id="total-users">0</p>
+      </div>
+      <div class="stat-card">
+        <h3>Pro Subscribers</h3>
+        <p class="number" id="pro-users">0</p>
+      </div>
+      <div class="stat-card">
+        <h3>Total Revenue</h3>
+        <p class="number" id="revenue">₹0</p>
+      </div>
+      <div class="stat-card">
+        <h3>Today's Queries</h3>
+        <p class="number" id="queries">0</p>
+      </div>
+    </div>
+
+    <h2>Recent Users & Subscriptions</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Plan</th>
+          <th>Queries Used</th>
+          <th>Total Queries</th>
+        </tr>
+      </thead>
+      <tbody id="user-list">
+        <!-- Populated by JavaScript -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Check authentication
+    if (!sessionStorage.getItem('admin_auth')) {
+      window.location.href = 'index.html';
+    }
+
+    function logout() {
+      sessionStorage.removeItem('admin_auth');
+      window.location.href = 'index.html';
+    }
+
+    function loadDashboard() {
+      // Load from localStorage (in production, this would be from your backend)
+      const users = JSON.parse(localStorage.getItem('research_copilot_users') || '{}');
+      const userArray = Object.values(users);
+      
+      // Update stats
+      document.getElementById('total-users').textContent = userArray.length;
+      
+      const proUsers = userArray.filter(u => u.subscriptionTier === 'pro');
+      document.getElementById('pro-users').textContent = proUsers.length;
+      
+      const revenue = proUsers.reduce((sum, user) => sum + (user.paidAmount || 0), 0);
+      document.getElementById('revenue').textContent = `₹${revenue.toLocaleString('en-IN')}`;
+      
+      const totalQueries = userArray.reduce((sum, user) => sum + (user.totalQueriesAllTime || 0), 0);
+      document.getElementById('queries').textContent = totalQueries;
+      
+      // Display users
+      const tbody = document.getElementById('user-list');
+      tbody.innerHTML = '';
+      
+      userArray.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(user => {
+        const row = tbody.insertRow();
+        row.innerHTML = `
+          <td>${new Date(user.createdAt).toLocaleDateString()}</td>
+          <td>${user.displayName}</td>
+          <td>${user.email}</td>
+          <td><span class="badge ${user.subscriptionTier}">${user.subscriptionTier}</span></td>
+          <td>${user.queriesUsedToday || 0}</td>
+          <td>${user.totalQueriesAllTime || 0}</td>
+        `;
+      });
+    }
+    
+    loadDashboard();
+    setInterval(loadDashboard, 30000); // Refresh every 30 seconds
+  </script>
+</body>
+</html>

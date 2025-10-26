@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Login - Research Copilot</title>
+  <style>
+    body {
+      font-family: system-ui;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      margin: 0;
+    }
+    .login-box {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 400px;
+    }
+    h1 { margin: 0 0 30px 0; color: #333; }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover { opacity: 0.9; }
+    .error {
+      color: #e74c3c;
+      font-size: 14px;
+      margin-top: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h1>🔐 Admin Login</h1>
+    <p style="color: #666; margin-bottom: 20px;">Research Copilot Dashboard</p>
+    <input type="password" id="password" placeholder="Enter admin password" />
+    <button onclick="login()">Access Dashboard</button>
+    <p class="error" id="error">Invalid password</p>
+  </div>
+
+  <script>
+    // CHANGE THIS PASSWORD!
+    const ADMIN_PASSWORD = "NeuverraX2025!"; // Change this to your secure password
+
+    function login() {
+      const password = document.getElementById('password').value;
+      if (password === ADMIN_PASSWORD) {
+        // Store session
+        sessionStorage.setItem('admin_auth', 'true');
+        window.location.href = 'dashboard.html';
+      } else {
+        document.getElementById('error').style.display = 'block';
+      }
+    }
+
+    // Allow Enter key
+    document.getElementById('password').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') login();
+    });
+  </script>
+</body>
+</html>
